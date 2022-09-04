@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Info</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body >
+
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+<div th:style="'background: url(/images/korvia-image-background-tnkr-signup-3.jpg) no-repeat center center fixed;' " >
+<div class="page-title">Account Info</div>
+<div class="account-container">
+    <ul>
+        <li>User Name: <span th:utext="${#request.userPrincipal.name}"></span></li>
+        <li>
+            Role:
+            <ul>
+                <li th:each="auth : ${userDetails.authorities}" th:utext="${auth.authority}"></li>
+            </ul>
+        </li>
+    </ul>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+</div>
+</div>
+<th:block th:include="/_footer"></th:block>
+
+</body>
+</html>

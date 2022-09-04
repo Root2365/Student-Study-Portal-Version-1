@@ -1,0 +1,89 @@
+    <!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Wiki </title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <style>
+    .main {
+        font-size: 36px;
+        font-weight: bold;
+        Text-align: center;
+    }
+
+    .gfg {
+        margin-left: 190px;
+        border: 5px solid #000080;
+        width: 400px;
+        height: 400px;
+        text-align: center;
+        padding: 50px;
+         margin-bottom: 40px;
+        color: #009900;
+        margin-top: 60px;
+        background-color: #c5c5db;
+    }
+
+    .gfg2 {
+         margin-top: 40px;
+    }
+
+    .gfg1 {
+        font-size: 42px;
+        font-weight: bold;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: #c5c5db;
+    }
+     .bg-img {
+            background-image:  url([[@{/images/Background.jpg}]]);
+            min-height: 380px;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+
+<div th:style="'background: url(/images/korvia-image-background-tnkr-signup-3.jpg) no-repeat center center fixed;' " align="center">
+   <h1>Create Wiki </h1>
+    <form  th:action="${edit} ? @{/student/edit/wiki/{id}(id=${id})} :@{/student/create/wiki}" method="post" th:object="${wiki}"  enctype="multipart/form-data">
+        <label >       Thumbnail</label>
+        <input type="file" class="custom-file-input" id="thumbnail" name="file"  th:field="*{thumbnail}" >
+        <br/>
+        <label >Title</label>
+        <br/>
+        <input type="text"  id="title"  th:field="*{title}" required="true" /><br/>
+        <label>Link:</label>
+        <br/>
+        <input  type="text"  id="link" th:field="*{link}" required="true"  width="48" height="48" /><br/>
+        <br/>
+        <label>Small Description</label>
+        <br/>
+        <input  type="text"  id="smalldescription" th:field="*{smalldescription}" required="true"  width="48" height="48" /><br/>
+        <br/>
+        <label>Description</label>
+        <br/>
+        <textarea  type="text"  id="description" th:field="*{description}" required="true"  width="48" height="200" style="width: 200px; height: 177px;"/><br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <!--            <label>E-mail:</label>-->
+<!--            <input type="text" th:field="*{email}" /><br/>-->
+<!--            <label>Password:</label>-->
+<!--            <input type="password" th:field="*{password}" /><br/>-->
+<!--            <label>Birthday (yyyy-mm-dd):</label>-->
+<!--            <input type="text" th:field="*{birthday}" /><br/>-->
+<!--            <label>Gender:</label>-->
+<!--            <input type="radio" th:field="*{gender}" value="Male" />Male-->
+<!--            <input type="radio" th:field="*{gender}" value="Female" />Female<br/>-->
+        <div class="form-group">
+        <button type="submit">Submit</button>
+        </div>
+    </form>
+        <!-- /.container -->
+</div>
+<th:block th:include="/_footer"></th:block>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<!--<![endif]-->
+
+<head>
+    <title>Video Search Results</title>
+    <meta  charset="UTF-8" content="YouTube Search Results" name="description" />
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <style>
+    .main {
+        font-size: 36px;
+        font-weight: bold;
+        Text-align: center;
+    }
+
+    .gfg {
+        margin-left: 190px;
+        border: 5px solid #000080;
+        width: 350px;
+        height: 450px;
+        text-align: center;
+        padding: 50px;
+         margin-bottom: 40px;
+         margin-top: 40px;
+    }
+
+    .gfg1 {
+        font-size: 42px;
+        font-weight: bold;
+        color: #009900;
+        margin-top: 60px;
+        background-color: #c5c5db;
+    }
+
+    .gfg2 {
+        font-size: 18px;
+        font-weight: bold;
+        background-color: #c5c5db;
+    }
+     .bg-img {
+            background-image: url(
+"https://media.geeksforgeeks.org/wp-content/uploads/20191212174641/bg1.png");
+            min-height: 380px;
+            background-size: cover;
+        }
+        .button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
+
+    </style>
+    <!--
+        <object th:include="fragments/head :: head" th:remove="tag"></object>
+    -->
+</head>
+
+<body class="page-container-bg-solid">
+
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+<!--
+<div th:include="fragments/topmenuheader :: header"></div>
+-->
+<div align="center">
+    <label >Enter: </label>
+    <input type="text"  id="name"  th:utext="*{name}"  />
+    <button type="button" id="btn">Search</button>
+</div>
+<div><a th:href="@{|/student/create/video|}" class="button">Create Video</a></div>
+
+</div>
+<div th:style="'background: url(/images/korvia-image-background-tnkr-signup-3.jpg) no-repeat center center fixed;' " class="page-container">
+    <div th:style="'background: url(/images/korvia-image-background-tnkr-signup-3.jpg) no-repeat center center fixed;' " class="page-content-wrapper">
+        <div class="page-head" style="padding-top:40px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-lg-6">
+                        <div class="portlet light portlet-fit ">
+                            <div class="portlet-title">
+                            </div>
+                            <div class="portlet-body">
+                                <div class="mt-element-list">
+                                    <div th:if="${numberOfVideos}>0"  class="mt-list-head list-news ext-1 font-white bg-green-sharp">
+                                    </div>
+                                    <div th:if="${numberOfVideos}>0" class="mt-list-container list-news ext-1" >
+                                        <ul>
+                                            <li class="gfg" th:each="video,iterationStatus : ${videos}">
+                                                <div class="list-icon-container">
+                                                    <LABEL>Title : </LABEL>
+                                                    <text class="uppercase"  th:text="${video.title}">
+                                                    </text>
+                                                    <a style="margin-left: 100px;" class="button" th:href="@{|/student/video/view/description?id=${video.id}|}">View Description</a>
+                                                </div>
+                                                </br>
+                                                </br>
+                                                <img th:src="${video.thumbnailLocation}" alt="W3Schools.com" style="height: 100px;width: 100px">
+
+                                                </text>
+                                                </br>
+                                                </br>
+                                                <div class="list-icon-container">
+                                                    <LABEL>Small Description : </LABEL>
+
+                                                    <text   th:text="${video.smalldescription}">
+                                                    </text>
+                                                </div>
+                                                </br>
+                                                </br>
+                                                <div class="list-icon-container">
+                                                    <LABEL>Detailed Link : </LABEL>
+                                                    <a th:href="${video.link}" target="_blank"  th:text="${video.title}">
+                                                        <i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                </div>
+                                                </br>
+                                                </br>
+                                                <!--<div class="list-icon-container">
+                                                    <LABEL>Created Date and Time  : </LABEL>
+                                                    <text class="list-datetime bold uppercase font-blue" th:text="${#dates.format(video.createdDate,'dd-MMM-yyyy HH:mm')}"></text>
+                                                    </text>
+                                                </div>
+                                                </br>-->
+                                                <div class="list-icon-container">
+                                                    <LABEL>Channel Name : </LABEL>
+                                                    <text   th:text="${video.channel}">
+                                                    </text>
+                                                </div>
+                                                </br>
+                                                </br>
+                                                <div class="list-icon-container">
+                                                    <LABEL >Views : </LABEL>
+                                                    <text style="margin-right: 100px;"  th:text="${video.views}">
+                                                    </text>
+                                                    <LABEL>Duration : </LABEL>
+                                                    <text   th:text="${video.duration}">
+                                                    </text>
+                                                </div>
+                                                </br>
+                                                </br>
+
+                                                <div class="list-item-content">
+                                                    <a  class="button"  th:href="@{|/student/edit/video?id=${video.id}|}">Edit This Video</a>
+                                                </div>
+                                                </br>
+                                                </br>
+                                                <div class="list-item-content">
+                                                    <a  class="button"  th:href="@{|/student/delete/video?id=${video.id}|}">Delete This Video</a>
+                                                </div>
+                                                </br>
+                                                </br>
+                                                </br>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div th:if="${numberOfVideos}==0" class="mt-list-container list-news ext-1" >
+                                        <H2>No Videos Present</H2>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+<div th:include="fragments/homefooter :: footer"></div>
+-->
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  $("#btn").click(function(){
+   window.location.replace("/student/get/video?keyword="+$("#name").val());
+});
+</script>
+
+</html>

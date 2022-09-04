@@ -1,0 +1,46 @@
+    <!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Enquiry </title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+
+<div th:style="'background: url(/images/korvia-image-background-tnkr-signup-3.jpg) no-repeat center center fixed;' " align="center">
+   <h1> Create Enquiry </h1>
+    <form   th:action="@{/student/send/enquiry}" method="post" th:object="${enquiry}">
+            <label >Name: </label>
+            <input type="text"  id="name"  th:field="*{name}" required="true" /><br/>
+        <br/>
+        <label >Email: </label>
+        <input type="text"  id="email"  th:field="*{email}" required="true" /><br/>
+        <br/>
+        <label >Subject: </label>
+        <input type="text"  id="subject"  th:field="*{subject}" required="true" /><br/>
+        <br/>
+        <label>Message: </label> </br>
+        <textarea  type="text"  id="message" th:field="*{message}" required="true"  width="48" height="100"  style="width: 227px; height: 178px;" /><br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <!--            <label>E-mail:</label>-->
+<!--            <input type="text" th:field="*{email}" /><br/>-->
+<!--            <label>Password:</label>-->
+<!--            <input type="password" th:field="*{password}" /><br/>-->
+<!--            <label>Birthday (yyyy-mm-dd):</label>-->
+<!--            <input type="text" th:field="*{birthday}" /><br/>-->
+<!--            <label>Gender:</label>-->
+<!--            <input type="radio" th:field="*{gender}" value="Male" />Male-->
+<!--            <input type="radio" th:field="*{gender}" value="Female" />Female<br/>-->
+        <div class="form-group">
+        <button type="submit">Register</button>
+        </div>
+    </form>
+        <!-- /.container -->
+</div>
+<th:block th:include="/_footer"></th:block>
+</body>
+</html>

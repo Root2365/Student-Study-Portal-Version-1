@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <style>
+                .button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
+    </style>
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+<div th:style="'background: url(/images/korvia-image-background-tnkr-signup-3.jpg) no-repeat center center fixed;' " >
+<div class="page-title">My Homework</div>
+<div> List of Homeworks: </div>
+<table border="1" style="width:100%; color: darkmagenta;">
+    <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Subject</th>
+        <th>Due Date</th>
+        <th>DELETE</th>
+        <th>Status</th>
+
+    </tr>
+    <tr th:each="homework : ${homeworkdata}">
+        <td th:utext="${homework.id}"></td>
+        <td th:utext="${homework.title}"></td>
+<!--
+        <td th:utext="${#dates.format(orderInfo.orderDate,'dd-MM-yyyy HH:mm')}"></td>
+-->
+        <td th:utext="${homework.description}"></td>
+        <td th:utext="${homework.subject}"></td>
+        <!--<select id="subject" th:field="*{homework.subject}">
+            <option th:each="p : ${subjects}" th:value="${p}" th:text="${p}" />
+        </select>-->
+        <td th:utext="${homework.dueDate}"></td>
+        <td><a th:href="@{|/student/delete/homework?homeworkId=${homework.id}|}">Delete</a></td>
+        <td th:if="${homework.status}==PENDING"><a th:href="@{|/student/update/homework/status?homeworkId=${homework.id}&status=DONE|}">Mark as Done</a></td>
+        <td th:if="${homework.status}==DONE"><a th:href="@{|/student/update/homework/status?homeworkId=${homework.id}&status=PENDING|}">Mark as Pending</a></td>
+
+        <!--<td>
+            <select>
+                <option th:each="p : ${statuslist}" th:value="${p}" th:text="${p}" th:selected="(${homework.status}==${p})"/>
+            </select>
+        </td>-->
+        <!--        <td style="color:red;" th:utext="${#numbers.formatDecimal(orderInfo.amount,3,2,'COMMA')}">
+        </td>-->
+
+    </tr>
+</table>
+    </br>
+<div><a class="button"  th:href="@{|/student/create/homework?userName=${userName}|}">Create Homework</a></div>
+</div>
+
+<th:block th:include="/_footer"></th:block>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+<div th:style="'background: url(/images/korvia-image-background-tnkr-signup-3.jpg) no-repeat center center fixed;' " >
+<div class="page-title">My Todos</div>
+<div> List of Todos: </div>
+<table border="1" style="width:100%; color: darkmagenta;">
+    <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Description</th>
+<!--
+        <th>Subject</th>
+-->
+<!--
+        <th>Due Date</th>
+-->
+        <th>Delete</th>
+        <th>Favourite</th>
+
+    </tr>
+    <tr th:each="todo : ${todosdata}">
+        <td th:utext="${todo.id}"></td>
+        <td th:utext="${todo.title}"></td>
+<!--
+        <td th:utext="${#dates.format(orderInfo.orderDate,'dd-MM-yyyy HH:mm')}"></td>
+-->
+        <td th:utext="${todo.description}"></td>
+        <!--<select id="subject" th:field="*{homework.subject}">
+            <option th:each="p : ${subjects}" th:value="${p}" th:text="${p}" />
+        </select>-->
+<!--
+        <td th:utext="${homework.dueDate}"></td>
+-->
+        <td><a th:href="@{|/student/delete/todos?todosId=${todo.id}|}">Delete</a></td>
+        <td th:if="${todo.favourite}==YES"><a th:href="@{|/student/update/todos/favourite?todosId=${todo.id}&status=NO|}">Mark as Favourite</a></td>
+        <td th:if="${todo.favourite}==NO"><a th:href="@{|/student/update/todos/favourite?todosId=${todo.id}&status=YES|}">Remove as Favourite</a></td>
+
+        <!--<td>
+            <select>
+                <option th:each="p : ${statuslist}" th:value="${p}" th:text="${p}" th:selected="(${homework.status}==${p})"/>
+            </select>
+        </td>-->
+        <!--        <td style="color:red;" th:utext="${#numbers.formatDecimal(orderInfo.amount,3,2,'COMMA')}">
+        </td>-->
+
+    </tr>
+</table>
+    </br>
+<div><a th:href="@{|/student/create/todos?userName=${userName}|}">Create Todos</a></div>
+</div>
+
+<th:block th:include="/_footer"></th:block>
+
+</body>
+</html>

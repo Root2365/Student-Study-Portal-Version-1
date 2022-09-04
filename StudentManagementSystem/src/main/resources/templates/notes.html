@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes List</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+                .button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
+    </style>
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+<div th:style="'background: url(/images/korvia-image-background-tnkr-signup-3.jpg) no-repeat center center fixed;' ">
+<div class="page-title">Student Notes</div>
+<table border="1" style="width:100%;color: rebeccapurple;">
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Created Date</th>
+        <th>Due Date</th>
+        <th>Edit Notes</th>
+        <th>Delete Notes</th>
+
+        <!--   <th>View</th>
+           <th>Edit</th>-->
+
+    </tr>
+    <tr th:each="notes : ${notesdata}">
+        <td th:utext="${notes.title}"></td>
+<!--
+        <td th:utext="${#dates.format(orderInfo.orderDate,'dd-MM-yyyy HH:mm')}"></td>
+-->
+        <td th:utext="${notes.description}"></td>
+        <td th:utext="${notes.createdDate}"></td>
+        <td th:utext="${notes.dueDate}"></td>
+        <td> <a class='fas fa-edit' style='font-size:24px;color:steelblue' th:href="@{|/student/edit/notes?id=${notes.id}&userName=${userName}|}"></a></td>
+        <td> <a  class='fa fa-trash' style='font-size:24px;color:steelblue' th:href="@{|/student/delete/notes?id=${notes.id}&userName=${userName}|}"></a></td>
+
+        <!--        <td style="color:red;" th:utext="${#numbers.formatDecimal(orderInfo.amount,3,2,'COMMA')}">
+                </td>-->
+ <!--       <td><a th:href="@{|/admin/order?orderId=${notes.id}|}">View</a></td>
+        <td><a th:href="@{|/admin/order?orderId=${notes.id}|}">Edit</a></td>
+-->
+    </tr>
+</table>
+</br>
+</br>
+<div><a  class="button"  th:href="@{|/student/creatnotes?userName=${userName}|}">Create Notes</a></div>
+</div>
+
+<th:block th:include="/_footer"></th:block>
+
+</body>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</html>

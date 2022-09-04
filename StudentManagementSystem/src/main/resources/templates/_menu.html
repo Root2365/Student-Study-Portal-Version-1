@@ -1,0 +1,75 @@
+
+<div class="menu-container"
+     xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
+        <a th:href="@{/}">Home</a>
+    |
+    <th:block sec:authorize="hasAnyRole('ROLE_MANAGER')">
+    <a th:href="@{/studentList}">
+        Student List
+    </a>
+    |
+    </th:block>
+    <th:block sec:authorize="hasAnyRole('ROLE_USER')">
+        <a th:href="@{/student/notes}">
+            Notes
+        </a>
+     |
+    </th:block>
+    <th:block sec:authorize="hasAnyRole('ROLE_USER')">
+        <a th:href="@{/student/get/homework}">
+            Homework
+        </a>
+        |
+    </th:block>
+    <th:block sec:authorize="hasAnyRole('ROLE_USER')">
+        <a th:href="@{/student/get/video}">
+            YouTube
+        </a>
+        |
+    </th:block>
+    <th:block sec:authorize="hasAnyRole('ROLE_USER')">
+        <a th:href="@{/student/get/wiki?keyword=null}">
+            Wikipedia
+        </a>
+        |
+    </th:block>
+    <th:block sec:authorize="hasAnyRole('ROLE_USER')">
+        <a th:href="@{/student/get/todos}">
+            To dos
+        </a>
+        |
+    </th:block>
+    <th:block >
+        <a th:href="@{/student/get/enquiry}">
+            Enquiry
+        </a>
+        |
+    </th:block>
+    <th:block sec:authorize="hasAnyRole('ROLE_MANAGER','ROLE_EMPLOYEE')">
+        <a th:href="@{/admin/orderList}">
+            Order List
+        </a>
+        |
+    </th:block>
+    <th:block sec:authorize="hasAnyRole('ROLE_MANAGER')">
+        <a th:href="@{/new/ROLE_USER/register}">
+            Add Student
+        </a>
+        |
+    </th:block>
+
+    <th:block sec:authorize="hasAnyRole('ROLE_MANAGER')">
+        <a th:href="@{/new/USER_MANAGER/register}">
+            Add Student
+        </a>
+        |
+    </th:block>
+
+    <th:block sec:authorize="hasAnyRole('ROLE_MANAGER','ROLE_EMPLOYEE')">
+        <a th:href="@{/store/register}">
+            Add Store
+        </a>
+        |
+    </th:block>
+</div>

@@ -1,0 +1,47 @@
+    <!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Registration </title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+
+<div align="center">
+   <h1>>Student Registration</h1>
+
+    <form   th:action="${manager} ? @{/add/manager} :@{/add/{role}/account(role=${role})}" method="post" th:object="${account}">
+            <label >Name</label>
+            <input type="text"  id="userName"  th:field="*{userName}" required="true" /><br/>
+        <label>E-mail:</label>
+        <input type="text" th:field="*{email}" required="true" /><br/>
+        <br/>
+        <label>Password:</label>
+        <input type="password" th:field="*{encrytedPassword}" required="true" /><br/>
+        <br/>
+        <label>Course:</label>
+            <select th:field="*{course}">
+                <option th:each="p : ${listProfession}" th:value="${p}" th:text="${p}" />
+            </select>
+        <br/>
+        <br/>
+        <br/>
+        <!--            <label>E-mail:</label>-->
+<!--            <input type="text" th:field="*{email}" /><br/>-->
+<!--            <label>Password:</label>-->
+<!--            <input type="password" th:field="*{password}" /><br/>-->
+<!--            <label>Birthday (yyyy-mm-dd):</label>-->
+<!--            <input type="text" th:field="*{birthday}" /><br/>-->
+<!--            <label>Gender:</label>-->
+<!--            <input type="radio" th:field="*{gender}" value="Male" />Male-->
+<!--            <input type="radio" th:field="*{gender}" value="Female" />Female<br/>-->
+        <div class="form-group">
+        <button type="submit">Register</button>
+        </div>
+    </form>
+        <!-- /.container -->
+</div>
+<th:block th:include="/_footer"></th:block>
+</body>
+</html>

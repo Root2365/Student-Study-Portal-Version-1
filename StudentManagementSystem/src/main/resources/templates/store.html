@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add New Store </title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+
+<div align="center">
+   <h1>>Store Registration</h1>
+
+    <form   th:action="@{/store/submit}" method="post" th:object="${store}">
+            <label >Name</label>
+            <input type="text"  id="name"  th:field="*{name}" required="true" />
+        <br/>
+        <br/>
+        <label>Open Time</label>
+        <input type="text" th:field="*{openTime}" required="true" /><br/>
+        <br/>
+        <br/>
+        <label>Close Time</label>
+        <input type="text" th:field="*{closeTime}" required="true" /><br/>
+        <br/>
+        <br/>
+        <label>Location </label>
+        <input type="text" th:field="*{location}" required="true" /><br/>
+        <br/>
+        <br/>
+        <br/>
+        <!--            <label>E-mail:</label>-->
+<!--            <input type="text" th:field="*{email}" /><br/>-->
+<!--            <label>Password:</label>-->
+<!--            <input type="password" th:field="*{password}" /><br/>-->
+<!--            <label>Birthday (yyyy-mm-dd):</label>-->
+<!--            <input type="text" th:field="*{birthday}" /><br/>-->
+<!--            <label>Gender:</label>-->
+<!--            <input type="radio" th:field="*{gender}" value="Male" />Male-->
+<!--            <input type="radio" th:field="*{gender}" value="Female" />Female<br/>-->
+        <div class="form-group">
+        <button type="submit">Add Store</button>
+        </div>
+    </form>
+        <!-- /.container -->
+</div>
+<th:block th:include="/_footer"></th:block>
+</body>
+</html>
